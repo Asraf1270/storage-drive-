@@ -68,7 +68,7 @@ $clipboard = isset($_SESSION['clipboard']) ? $_SESSION['clipboard'] : null;
 <header class="topbar">
   <!-- Logo / Title -->
   <div class="topbar-brand">
-    <h1><span class="icon">Storage</span></h1>
+    <a href="index.php"><h1><span class="icon">Storage</span></h1></a>
   </div>
 
   <!-- Controls -->
