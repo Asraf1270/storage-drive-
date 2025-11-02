@@ -66,15 +66,24 @@ $clipboard = isset($_SESSION['clipboard']) ? $_SESSION['clipboard'] : null;
 </head>
 <body>
 <header class="topbar">
-  <h1>Storage</h1>
-  <div class="controls">
-    <form id="createFolderForm" action="action.php" method="post" class="inline">
+  <!-- Logo / Title -->
+  <div class="topbar-brand">
+    <h1><span class="icon">Storage</span></h1>
+  </div>
+
+  <!-- Controls -->
+  <div class="topbar-actions">
+    <!-- Create Folder -->
+    <form action="action.php" method="post" class="inline-form">
       <input type="hidden" name="action" value="create_folder">
       <input type="hidden" name="current_path" value="<?php echo htmlspecialchars($current); ?>">
-      <input name="folder_name" placeholder="New folder name" required>
-      <button type="submit">Create</button>
+      <div class="input-group">
+        <input type="text" name="folder_name" placeholder="New folder" required>
+        <button type="submit" class="btn-primary">Create</button>
+      </div>
     </form>
 
+    <!-- Upload Files -->
     <form id="uploadForm" action="action.php" method="post" enctype="multipart/form-data" class="inline">
       <input type="hidden" name="action" value="upload">
       <input type="hidden" name="current_path" value="<?php echo htmlspecialchars($current); ?>">
@@ -82,26 +91,37 @@ $clipboard = isset($_SESSION['clipboard']) ? $_SESSION['clipboard'] : null;
       <button type="submit">Upload</button>
     </form>
 
+    <!-- Action Buttons -->
     <div class="btn-group">
       <button id="copyBtn" class="op-btn" data-op="copy">Copy</button>
       <button id="cutBtn" class="op-btn" data-op="cut">Cut</button>
-      <form action="action.php" method="post" id="pasteForm" class="inline">
+      <form action="action.php" method="post" class="inline-form" id="pasteForm">
         <input type="hidden" name="action" value="paste">
         <input type="hidden" name="current_path" value="<?php echo htmlspecialchars($current); ?>">
-        <button type="submit" id="pasteBtn">Paste</button>
+        <button type="submit" id="pasteBtn" class="btn-secondary">Paste</button>
       </form>
-      <button id="deleteBtn">Delete</button>
+      <button id="deleteBtn" class="btn-danger">Delete</button>
+    </div>
+
+    <!-- User Menu -->
+    <div class="user-menu">
+      <button id="themeToggle" class="icon-btn" title="Toggle dark mode">
+        Dark Mode
+      </button>
+      <a href="logout.php" class="btn-logout">Logout</a>
     </div>
   </div>
 </header>
 
-<main class="container">
-  <nav class="breadcrumbs">
+<nav class="breadcrumbs">
     <?php foreach($crumbs as $c): ?>
       <a href="?path=<?php echo relative_url($c['path']); ?>"><?php echo htmlspecialchars($c['name']); ?></a>
       <?php if ($c !== end($crumbs)) echo ' / '; ?>
     <?php endforeach; ?>
   </nav>
+
+<main class="container">
+  
 
   <section class="listing">
     <form id="itemsForm" action="action.php" method="post">
@@ -251,6 +271,23 @@ document.getElementById('renameCancel').addEventListener('click', () => {
   document.getElementById('renameModal').style.display = 'none';
   document.getElementById('renameModal').setAttribute('aria-hidden','true');
 });
+</script>
+<script>
+  const themeBtn = document.getElementById('themeToggle');
+  const body = document.body;
+
+  // Load saved theme
+  if (localStorage.getItem('darkMode') === 'true') {
+    body.classList.add('dark');
+    themeBtn.textContent = 'Light Mode';
+  }
+
+  themeBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    const isDark = body.classList.contains('dark');
+    themeBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    localStorage.setItem('darkMode', isDark);
+  });
 </script>
 </body>
 </html>
