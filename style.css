@@ -1,0 +1,330 @@
+/* === General Reset === */
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #1e293b;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* === Header / Topbar === */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background: #2563eb;
+  color: white;
+  padding: 15px 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.controls input[type="text"],
+.controls input[type="file"] {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: white;
+  font-size: 0.9rem;
+}
+
+.controls button,
+.btn-group button,
+.inline button {
+  background: #1d4ed8;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease-in-out, transform 0.1s;
+}
+
+.controls button:hover,
+.btn-group button:hover,
+.inline button:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+}
+
+.op-btn {
+  background: #0ea5e9;
+}
+.op-btn:hover {
+  background: #0284c7;
+}
+
+#deleteBtn {
+  background: #dc2626;
+}
+#deleteBtn:hover {
+  background: #b91c1c;
+}
+
+/* === Breadcrumbs === */
+.breadcrumbs {
+  padding: 12px 25px;
+  background: #e2e8f0;
+  border-bottom: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.breadcrumbs a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* === Layout === */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.listing {
+  flex: 3;
+  min-width: 300px;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 220px;
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  height: fit-content;
+}
+
+/* === File Table === */
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.file-table th,
+.file-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.file-table thead {
+  background: #f1f5f9;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.file-table tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background 0.2s;
+}
+
+.file-table tr:hover {
+  background: #f9fafb;
+}
+
+.file-table td.name a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.file-table td.name a:hover {
+  text-decoration: underline;
+}
+
+/* === Buttons in table === */
+.renameBtn,
+.downloadBtn,
+.downloadDisabled {
+  background: #64748b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.renameBtn:hover {
+  background: #475569;
+}
+
+.downloadBtn {
+  background: #16a34a;
+}
+
+.downloadBtn:hover {
+  background: #15803d;
+}
+
+.downloadDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* === Empty Message === */
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #94a3b8;
+}
+
+/* === Modal (Rename) === */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #1e293b;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 14px;
+}
+
+/* === Clipboard === */
+.sidebar h3 {
+  margin-top: 0;
+  border-bottom: 2px solid #cbd5e1;
+  padding-bottom: 6px;
+}
+
+.sidebar p, .sidebar ul {
+  font-size: 0.9rem;
+  margin: 6px 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.sidebar ul li {
+  background: #e2e8f0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin-bottom: 4px;
+}
+
+/* === Dark Mode === */
+body.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+body.dark .topbar {
+  background: #1e293b;
+}
+
+body.dark .breadcrumbs {
+  background: #1e293b;
+  border-bottom-color: #334155;
+}
+
+body.dark .file-table {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+body.dark .file-table thead {
+  background: #334155;
+}
+
+body.dark .file-table tr:hover {
+  background: #475569;
+}
+
+body.dark .sidebar {
+  background: #1e293b;
+}
+
+body.dark .modal-content {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+/* === Responsive === */
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .controls {
+    justify-content: center;
+  }
+  .topbar {
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .file-table th, .file-table td {
+    padding: 10px;
+  }
+  .btn-group {
+    display: flex;
+    gap: 6px;
+  }
+}
